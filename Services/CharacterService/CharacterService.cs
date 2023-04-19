@@ -43,5 +43,52 @@ namespace dotnet7_rpg.Services.CharacterService
             serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharacterResponseDto>(c)).ToList();
             return serviceResponse;
         }
+
+        public async Task<ServiceResponse<GetCharacterResponseDto>> UpdateCharacter(UpdateCharacterRequestDto updatedCharacter)
+        {
+            var serviceResponse = new ServiceResponse<GetCharacterResponseDto>();
+            try
+            {
+                var character = characters.FirstOrDefault(c => c.Id == updatedCharacter.Id);
+                if (character is null)
+                {
+                    throw new Exception($"Character with Id '{updatedCharacter.Id}' not found");
+                }
+
+                character = _mapper.Map(updatedCharacter, character);
+
+                serviceResponse.Data = _mapper.Map<GetCharacterResponseDto>(character);
+            }
+            catch (Exception e)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = e.Message;
+            }
+
+            return serviceResponse;
+        }
+
+        public async Task<ServiceResponse<List<GetCharacterResponseDto>>> DeleteCharacter(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetCharacterResponseDto>>();
+            try
+            {
+                var character = characters.FirstOrDefault(c => c.Id == id);
+                if (character is null)
+                {
+                    throw new Exception($"Character with Id '{id}' not found");
+                }
+                characters.Remove(character);
+
+                serviceResponse.Data = characters.Select(c => _mapper.Map<GetCharacterResponseDto>(c)).ToList();
+            }
+            catch (Exception e)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = e.Message;
+            }
+
+            return serviceResponse;
+        }
     }
 }
