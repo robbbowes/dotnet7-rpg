@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace dotnet7_rpg.Services.CharacterService
 {
@@ -143,7 +139,7 @@ namespace dotnet7_rpg.Services.CharacterService
                     return response;
                 }
 
-                character.Skills.Add(skill);
+                character.Skills!.Add(skill);
                 await _context.SaveChangesAsync();
 
                 response.Data = _mapper.Map<GetCharacterResponseDto>(character);
