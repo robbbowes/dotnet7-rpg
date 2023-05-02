@@ -11,8 +11,8 @@ namespace dotnet7_rpg.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly IAuthRespository _authRepo;
-        public UserController(IAuthRespository authRepo)
+        private readonly IAuthRepository _authRepo;
+        public UserController(IAuthRepository authRepo)
         {
             _authRepo = authRepo;
         }

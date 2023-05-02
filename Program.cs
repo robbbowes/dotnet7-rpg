@@ -1,7 +1,9 @@
 global using dotnet7_rpg.Data;
 global using dotnet7_rpg.DTOs.Character;
+global using dotnet7_rpg.DTOs.Weapon;
 global using dotnet7_rpg.Models;
 global using dotnet7_rpg.Services.CharacterService;
+global using dotnet7_rpg.Services.WeaponService;
 global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -37,7 +39,9 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddScoped<ICharacterService, CharacterService>();
 
-builder.Services.AddScoped<IAuthRespository, AuthRepository>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+
+builder.Services.AddScoped<IWeaponService, WeaponService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -51,6 +55,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

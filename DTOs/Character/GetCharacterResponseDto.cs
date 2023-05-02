@@ -14,5 +14,6 @@ namespace dotnet7_rpg.DTOs.Character
         public int Defense { get; set; } = 10;
         public int Intelligence { get; set; } = 10;
         public RPGClass Class { get; set; } = RPGClass.Knight;
+        public GetWeaponResponseDto? Weapon { get; set; }
     }
 }

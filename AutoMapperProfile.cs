@@ -12,6 +12,9 @@ namespace dotnet7_rpg
             CreateMap<Character, GetCharacterResponseDto>();
             CreateMap<AddCharacterRequestDto, Character>();
             CreateMap<UpdateCharacterRequestDto, Character>();
+
+            CreateMap<AddWeaponRequestDto, Weapon>();
+            CreateMap<Weapon, GetWeaponResponseDto>();
         }
     }
 }
