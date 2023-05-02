@@ -1,3 +1,4 @@
+using dotnet7_rpg.DTOs.Skill;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace dotnet7_rpg
 
             CreateMap<AddWeaponRequestDto, Weapon>();
             CreateMap<Weapon, GetWeaponResponseDto>();
+
+            CreateMap<Skill, GetSkillRequestDto>();
         }
     }
 }
